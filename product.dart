@@ -14,10 +14,14 @@ class Product {
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
   Map<String, dynamic> toJson() => _$ProductToJson(this);
+  
+  @override
+  String toString() {
+    return '$id | $name | $price';
+  }
 }
 
 void main() {
-  
   Product product = Product(1, 'Laptop', 1500.0);
   print(' before serialization: $product');
 
