@@ -5,9 +5,9 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class User extends Equatable {
-   int id;
-   String name;
-   String email;
+  final int id;
+  final String name;
+  final String email;
 
   User( this.id, this.name,this.email);
 
@@ -22,8 +22,8 @@ void main() {
 
   Map<String, dynamic> json = {
     "id": 1,
-    "name": "John Doe",
-    "email": "john.doe@example.com"
+    "name": "ali",
+    "email": "ali.dou@example.com"
   };
 
   User user1 = User.fromJson(json);
