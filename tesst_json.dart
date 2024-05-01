@@ -50,7 +50,7 @@ Future<void> fetch_data(String url,String path) async{
         print(users[0]);
         print('encode: ${json.encode(users[0])}');
       } else {
-        print('Failed to load data: ${resp.statusCode}');
+        throw HttpException('Failed to load data: ${resp.statusCode}');
       }
     }on SocketException catch  (e) {
       print('an internet error occurred: $e');
