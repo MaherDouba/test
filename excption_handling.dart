@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 class Exception_han {
   Future<String> check_url(String url) async {
@@ -24,9 +25,22 @@ class Exception_han {
         return 'Bad response format from: $url';
       case TimeoutException:
         return 'Request timed out for: $url';
+      case HttpException:
+        return 'http excption $url';
       default:
         return 'An error occurred while fetching data from: $url';
     }
+  }
+}
+Future<String> loading(Future<String> func()) async {
+  print("Loading...");
+  try {
+    String result = await func();
+    print("Load complete!");
+    return 'result: $result';
+  } catch (error) {
+    print('Error occurred during loading: $error');
+    return 'Error occurred during loading';
   }
 }
 
@@ -39,7 +53,7 @@ void main() {
     })
     .catchError((error) {
       print('Error: $error');
-    });
+    }).then((_) => loading(() => customHandler.fetchData('https://example.com/data')));
 
   customHandler.fetchData('https://examlkple.com/invalid-url')
     .then((result) {
